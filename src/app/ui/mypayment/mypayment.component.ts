@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ApiStreamingService } from '../../service/apistreaming.service';
+import { ApiauthService } from '../../service/apiauth.service';
+import { Observable } from 'rxjs';
+import { Usr } from 'src/app/model/usr';
 
 @Component({
   selector: 'app-mypayment',
@@ -9,18 +12,21 @@ import { ApiStreamingService } from '../../service/apistreaming.service';
 })
 export class MypaymentComponent implements OnInit {
 
+  public usuario = this._apiauth.usuarioData;
+
   public idStatus: number = 2;
 
   public lstPayments: any[] = [];
   public lstStatus: any[] = [];
 
   constructor(
-    private _apistreaming: ApiStreamingService
+    private _apistreaming: ApiStreamingService,
+    private _apiauth: ApiauthService
   ) {  }
 
   ngOnInit(): void {
     this.getStatusPayment();
-    this.getPayments(1, this.idStatus);
+    this.getPayments(this.usuario.idUsuario, this.idStatus);
   }
 
   getPayments(user: number, status: number) {
