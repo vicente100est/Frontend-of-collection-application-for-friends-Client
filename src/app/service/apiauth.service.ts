@@ -17,7 +17,7 @@ const httpOption = {
 
 export class ApiauthService {
 
-  private _usuarioSubject: BehaviorSubject<Usr>;
+  private _usuarioSubject: BehaviorSubject<Usr> = new BehaviorSubject<Usr>({} as Usr);
 
   public get usuarioData(): Usr {
     return this._usuarioSubject.value;
@@ -44,10 +44,10 @@ export class ApiauthService {
       );
   }
 
-/*
+
   logoutUser() {
     localStorage.removeItem('usuario');
-    this._usuarioSubject?.next(null);
+    this._usuarioSubject.next({} as Usr);
   }
-*/
+
 }
