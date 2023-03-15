@@ -5,12 +5,12 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto" *ngIf="usuario.tokenUsuario != null; else login">
+    <ul class="navbar-nav mr-auto" *ngIf="usuarioLog.tokenUsuario != null; else login">
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/']">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/mypayments']">Hola {{ usuario.nombreUsuario }}</a>
+        <a class="nav-link" [routerLink]="['/mypayments']">Hola {{ usuarioLog.nombreUsuario }}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/mystreamings']">Mis Servicios</a>
