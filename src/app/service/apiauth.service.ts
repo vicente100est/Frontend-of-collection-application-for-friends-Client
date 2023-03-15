@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, map, Observable } from "rxjs";
-import { environment } from "src/environments/environment.development";
+import { environment } from "src/environments/environment";
 import { Response } from '../model/response';
 import { Usr } from "../model/usr";
 
@@ -19,6 +19,8 @@ export class ApiauthService {
 
   private _usuarioSubject: BehaviorSubject<Usr> = new BehaviorSubject<Usr>({} as Usr);
 
+  public usuario: Observable<Usr>;
+
   public get usuarioData(): Usr {
     return this._usuarioSubject.value;
   }
@@ -26,7 +28,10 @@ export class ApiauthService {
   constructor(
     private _http: HttpClient
   ) {
-    this._usuarioSubject = new BehaviorSubject<Usr>(JSON.parse(localStorage.getItem('usuario') || '{}'));
+    this._usuarioSubject =
+      new BehaviorSubject<Usr>(JSON.parse(localStorage.getItem('usuario') || '{}'));
+
+    this.usuario = this._usuarioSubject.asObservable();
   }
 
   loginUser(fechaNacimientoUsuario: string, telefonoUsuario: string): Observable<Response> {

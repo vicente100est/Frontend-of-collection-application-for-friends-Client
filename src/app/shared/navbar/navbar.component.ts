@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiauthService } from 'src/app/service/apiauth.service';
-import { Observable } from 'rxjs';
+import { Usr } from 'src/app/model/usr';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +10,16 @@ import { Observable } from 'rxjs';
 })
 export class NavbarComponent {
 
-  public usuario = this._apiauth.usuarioData;
+  public usuarioLog: Usr = {} as Usr;
 
   constructor(
     private _apiauth: ApiauthService,
     private _router: Router
-  ) {}
+  ) {
+    this._apiauth.usuario.subscribe(res => {
+      this.usuarioLog = res;
+    });
+  }
 
   logout() {
     this._apiauth.logoutUser();
