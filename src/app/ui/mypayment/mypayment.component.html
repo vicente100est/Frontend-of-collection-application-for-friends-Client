@@ -4,7 +4,7 @@
   <mat-form-field>
     <mat-label>Status:</mat-label>
     <mat-select matInput [(ngModel)]="idStatus">
-      <mat-option *ngFor="let sts of lstStatus">
+      <mat-option *ngFor="let sts of lstStatus" (click)="getPayments(usuario.idUsuario, sts.idStatus)">
         {{ sts.nombreStatus }}
       </mat-option>
     </mat-select>
