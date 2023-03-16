@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { ApiStreamingService } from '../../service/apistreaming.service';
 import { ApiauthService } from '../../service/apiauth.service';
-import { Observable } from 'rxjs';
-import { Usr } from 'src/app/model/usr';
 
 @Component({
   selector: 'app-mypayment',
